@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Fork of Episode 3: Sol LeWitt - circles pattern</title>
+    <style>
+      body {
+        margin: 0;
+        overflow: hidden;
+      }
+    </style>
+  </head>
+  <body>
+    <script>
+      const windowHeight = window.innerHeight;
+      const windowWidth = window.innerWidth;
+
+      const svg = document.createElementNS(
+        'http://www.w3.org/2000/svg',
+        'svg'
+      );
+      
+      svg.setAttribute('class', "roundround");
+      svg.setAttribute('width', windowWidth);
+      svg.setAttribute('height', windowHeight);
+      
+      document.body.append(svg);
+      
+      const mask = document.createElementNS(
+          'http://www.w3.org/2000/svg',
+          'mask'
+      );
+      mask.setAttribute('id', 'circle-mask')
+      
+      const polygon = document.createElementNS(
+        	'http://www.w3.org/2000/svg',
+        	'polygon'
+      );
+      
+      polygon.setAttribute('fill', 'white');
+      polygon.setAttribute('points', "350,75  379,161 469,161 397,215,423,301 350,250 277,301 303,215,231,161 321,161");
+                     
+      mask.append(polygon);
+      
+      const circle = document.createElementNS(
+          'http://www.w3.org/2000/svg',
+          'circle'
+      );
+      circle.setAttribute('cx', windowWidth / 1.6);
+      circle.setAttribute('cy', windowHeight / 1.4);
+      circle.setAttribute('r', 125);
+      circle.setAttribute('fill', 'white');
+      
+      mask.append(circle);
+      
+      const rect = document.createElementNS(
+          'http://www.w3.org/2000/svg',
+          'rect'
+      );
+      rect.setAttribute('x', 600);
+      rect.setAttribute('y', 50);
+      rect.setAttribute('width', 125);
+      rect.setAttribute('height', 125);
+      rect.setAttribute('fill', 'white');
+      
+      mask.append(rect);
+      
+      svg.append(mask);
+      
+      const numberOfCircles = 25;
+      for (let i = 0; i < numberOfCircles; i++) {
+        const circle = document.createElementNS(
+          'http://www.w3.org/2000/svg',
+          'circle'
+        );
+
+        circle.setAttribute('r', i * 20);
+        circle.setAttribute('stroke', '#39F');
+        circle.setAttribute('stroke-width', 15);
+        circle.setAttribute('fill', 'none');
+        circle.setAttribute('cx', windowWidth / 2);
+        circle.setAttribute('cy', windowHeight / 2);
+        circle.setAttribute('mask', 'url(#circle-mask)');
+        
+        svg.append(circle);
+
+      }
+    </script>
+  </body>
+</html>
